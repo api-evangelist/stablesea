@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Stable Sea Terminal Liquidity Providers API
+  description: A comprehensive API for managing terminal operations, organizations, quotes, and orders in the Stable Sea shipping platform
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.stablesea.com/v1
+security:
+- bearerAuth: []
+tags:
+- name: Liquidity Providers
+paths:
+  /liquidity-providers:
+    get:
+      summary: List Liquidity Providers
+      description: Returns all available liquidity providers with their trading pairs and hours of operation
+      responses:
+        '200':
+          description: Liquidity providers response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LiquidityProvider'
+      tags:
+      - Liquidity Providers
+  /liquidity-providers/{provider_name}/exchange-rate:
+    get:
+      summary: Get Exchange Rate
+      description: Get current exchange rate for a specific liquidity provider
+      parameters:
+      - name: provider_name
+        in: path
+        description: Name of the liquidity provider
+        required: true
+        schema:
+          type: string
+          example: ALPHA
+      responses:
+        '200':
+          description: Exchange rate response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ExchangeRate'
+      tags:
+      - Liquidity Providers
+components:
+  schemas:
+    PayinCurrency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: USDC
+    DateTime:
+      type: string
+      format: date-time
+      description: ISO 8601 UTC timestamp (RFC3339)
+      example: '2024-01-15T10:00:00Z'
+    LiquidityProvider:
+      type: object
+      required:
+      - name
+      - trading_pairs
+      properties:
+        name:
+          type: string
+          example: ALPHA
+        trading_pairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingPair'
+    PayoutCurrency:
+      type: string
+      enum:
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: COP
+    ExchangeRate:
+      type: object
+      required:
+      - payin_currency
+      - payout_currency
+      - exchange_rate
+      properties:
+        payin_currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        payout_currency:
+          $ref: '#/components/schemas/PayoutCurrency'
+        exchange_rate:
+          type: string
+          example: '3921.8'
+          description: Current exchange rate as a string to preserve precision
+    TradingPair:
+      type: object
+      required:
+      - payin_currency
+      - payout_currency
+      - hours_of_operation
+      properties:
+        payin_currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        payout_currency:
+          $ref: '#/components/schemas/PayoutCurrency'
+        hours_of_operation:
+          type: array
+          items:
+            type: object
+            required:
+            - open_time_utc
+            - close_time_utc
+            properties:
+              open_time_utc:
+                $ref: '#/components/schemas/DateTime'
+              close_time_utc:
+                $ref: '#/components/schemas/DateTime'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Use your API key as the bearer token
+      x-default: DEFAULT-TOKEN-HERE

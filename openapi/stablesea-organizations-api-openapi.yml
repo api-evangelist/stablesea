@@ -1,0 +1,1112 @@
+openapi: 3.1.0
+info:
+  title: Stable Sea Terminal Liquidity Providers Organizations API
+  description: A comprehensive API for managing terminal operations, organizations, quotes, and orders in the Stable Sea shipping platform
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.stablesea.com/v1
+security:
+- bearerAuth: []
+tags:
+- name: Organizations
+paths:
+  /organizations:
+    post:
+      summary: Create Organization
+      description: Creates a new organization
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to prevent duplicate operations
+        required: true
+        schema:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+      requestBody:
+        description: Organization to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrganization'
+        required: true
+      responses:
+        '201':
+          description: Organization created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Organization'
+      tags:
+      - Organizations
+    get:
+      summary: List Organizations
+      description: Returns all organizations
+      responses:
+        '200':
+          description: Organizations response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+      tags:
+      - Organizations
+  /organizations/{organization_id}:
+    get:
+      summary: Get Organization
+      description: Retrieve details for a specific organization
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization to retrieve
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Organization'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/configured-routes:
+    get:
+      summary: List configured routes
+      description: Returns product route templates for the organization (pay-in and pay-out currencies, limits, cost tiers, and trading hours). Use this to see which currency pairs are enabled for your org before materialized offerings appear from POST /organizations/{organization_id}/offerings. When inclusive_account_types is empty, there is no extra type filter beyond org-level enabled money-account types.
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      responses:
+        '200':
+          description: Configured routes for the organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConfiguredRoute'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/external_payment_instruments:
+    post:
+      summary: Create External Payment Instrument
+      description: Creates an external account for an organization to receive payouts
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to prevent duplicate operations
+        required: true
+        schema:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+      requestBody:
+        description: External payment instrument to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewExternalPaymentInstrument'
+        required: true
+      responses:
+        '201':
+          description: External payment instrument created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ExternalPaymentInstrument'
+      tags:
+      - Organizations
+    get:
+      summary: List External Payment Instruments
+      description: Fetch all external payment instruments for a customer
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      responses:
+        '200':
+          description: External payment instruments response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExternalPaymentInstrument'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/external_payment_instruments/{external_payment_instrument_id}:
+    get:
+      summary: Get External Payment Instrument
+      description: Fetch a specific external payment instrument for an organization
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: external_payment_instrument_id
+        in: path
+        description: ID of external payment instrument
+        required: true
+        schema:
+          type: string
+          example: mnyacctcm_01k4r01nm4f41tcsws4sr9k8nn
+      responses:
+        '200':
+          description: External payment instrument details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ExternalPaymentInstrument'
+      tags:
+      - Organizations
+    delete:
+      summary: Archive External Payment Instrument
+      description: Archive an external account for a customer
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: external_payment_instrument_id
+        in: path
+        description: ID of external payment instrument
+        required: true
+        schema:
+          type: string
+          example: mnyacctcm_01k4r01nm4f41tcsws4sr9k8nn
+      responses:
+        '200':
+          description: External payment instrument archived successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: External payment instrument archived successfully
+      tags:
+      - Organizations
+  /organizations/{organization_id}/offerings:
+    post:
+      summary: Create Offerings
+      description: Creates offerings for an organization
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to prevent duplicate operations
+        required: true
+        schema:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '201':
+          description: Offerings created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Offering'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/offerings/{offering_id}:
+    get:
+      summary: Get Offering
+      description: Retrieve details for a specific offering
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: offering_id
+        in: path
+        description: ID of offering
+        required: true
+        schema:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+      responses:
+        '200':
+          description: Offering details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Offering'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/quotes:
+    post:
+      summary: Create Quote
+      description: Creates a quote for an organization
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to prevent duplicate operations
+        required: true
+        schema:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+      requestBody:
+        description: Quote request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewQuote'
+        required: true
+      responses:
+        '201':
+          description: Quote created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Quote'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/quotes/{quote_id}:
+    get:
+      summary: Get Quote
+      description: Retrieve details for a specific quote
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: quote_id
+        in: path
+        description: ID of quote
+        required: true
+        schema:
+          type: string
+          example: qt_01k4qpmvgxfsg9db9mjrtq9tk2
+      responses:
+        '200':
+          description: Quote details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Quote'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/orders:
+    post:
+      summary: Create Order
+      description: Creates an order for an organization
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to prevent duplicate operations
+        required: true
+        schema:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+      requestBody:
+        description: Order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrder'
+        required: true
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
+      tags:
+      - Organizations
+    get:
+      summary: List Orders
+      description: Returns all orders for a customer
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      responses:
+        '200':
+          description: Orders response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+      tags:
+      - Organizations
+  /organizations/{organization_id}/orders/{order_id}:
+    get:
+      summary: Get Order
+      description: Retrieve details for a specific order
+      parameters:
+      - name: organization_id
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+      - name: order_id
+        in: path
+        description: ID of order
+        required: true
+        schema:
+          type: string
+          example: ord_01k4qn3cxdefkargtccm4ycxsf
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
+      tags:
+      - Organizations
+components:
+  schemas:
+    NewExternalPaymentInstrument:
+      type: object
+      required:
+      - alias
+      - currency
+      - method
+      - details
+      properties:
+        alias:
+          type: string
+          example: My Primary Wallet
+        currency:
+          $ref: '#/components/schemas/Currency'
+        method:
+          $ref: '#/components/schemas/PaymentMethod'
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
+          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
+    PayinCurrency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: USDC
+    NewOrganization:
+      type: object
+      required:
+      - name
+      - contact
+      properties:
+        name:
+          type: string
+          example: Acme Corporation
+        contact:
+          $ref: '#/components/schemas/Contact'
+    Offering:
+      type: object
+      required:
+      - id
+      - order_type
+      - payin
+      - payout
+      - indicative_exchange_rate
+      - current_day_hours_of_operation
+      - liquidity_provider
+      - estimated_settlement_time
+      - created_at
+      properties:
+        id:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+        order_type:
+          type: string
+          enum:
+          - QUOTED
+          - LIMIT
+          - MARKET
+        payin:
+          type: object
+          required:
+          - external_payment_instrument
+          - limits
+          - indicative_cost_tiers
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+            limits:
+              type: object
+              required:
+              - min
+              - max
+              properties:
+                min:
+                  $ref: '#/components/schemas/DecimalString'
+                max:
+                  $ref: '#/components/schemas/DecimalString'
+            indicative_cost_tiers:
+              type: array
+              items:
+                type: object
+                required:
+                - min
+                - max
+                - bps
+                properties:
+                  min:
+                    $ref: '#/components/schemas/DecimalString'
+                  max:
+                    $ref: '#/components/schemas/DecimalString'
+                  bps:
+                    $ref: '#/components/schemas/DecimalString'
+        payout:
+          type: object
+          required:
+          - external_payment_instrument
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+        indicative_exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        current_day_hours_of_operation:
+          type: object
+          required:
+          - open_utc
+          - close_utc
+          properties:
+            open_utc:
+              $ref: '#/components/schemas/DateTime'
+            close_utc:
+              $ref: '#/components/schemas/DateTime'
+        liquidity_provider:
+          $ref: '#/components/schemas/LiquidityProvider'
+        estimated_settlement_time:
+          type: string
+          enum:
+          - T+0
+          - T+1
+          - T+2
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+    OrganizationStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - COMPLIANCE_HOLD
+      example: ACTIVE
+    PaymentMethod:
+      type: string
+      enum:
+      - SOLANA_ADDRESS
+      - COP_BANK_ACCOUNT
+      - NGN_BANK_ACCOUNT
+    Contact:
+      type: object
+      required:
+      - email
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@acme.com
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+    DecimalString:
+      type: string
+      format: decimal
+      description: A string representation of a decimal number
+    PaymentMethodCopBankAccount:
+      type: object
+      title: COP_BANK_ACCOUNT
+      required:
+      - bank_account_number
+      - bank_code
+      - account_holder_first_name
+      - account_holder_last_name
+      - legal_entity_name
+      - doc_type
+      - doc_id
+      - physical_address
+      - account_type
+      properties:
+        bank_account_number:
+          type: string
+          example: '1234567890'
+        bank_code:
+          type: string
+          example: '001'
+        account_holder_first_name:
+          type: string
+          example: Juan
+        account_holder_last_name:
+          type: string
+          example: Perez
+        legal_entity_name:
+          type: string
+          example: Juan Perez Empresa
+        doc_type:
+          type: string
+          example: CC
+        doc_id:
+          type: string
+          example: '901458.6527'
+        physical_address:
+          type: string
+          example: 'Calle 123 #45-67, Bogotá, Colombia'
+        account_type:
+          type: string
+          example: CHECKING
+    LiquidityProvider:
+      type: object
+      required:
+      - name
+      - trading_pairs
+      properties:
+        name:
+          type: string
+          example: ALPHA
+        trading_pairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingPair'
+    PayoutCurrency:
+      type: string
+      enum:
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: COP
+    Quote:
+      type: object
+      required:
+      - id
+      - offering_id
+      - exchange_rate
+      - payin
+      - payout
+      - submission_expires_at
+      - funding_expires_at
+      - created_at
+      properties:
+        id:
+          type: string
+          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
+        offering_id:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+        exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        payin:
+          type: object
+          required:
+          - total
+          - fee
+          - tax
+          properties:
+            total:
+              $ref: '#/components/schemas/DecimalString'
+            fee:
+              $ref: '#/components/schemas/DecimalString'
+            tax:
+              $ref: '#/components/schemas/DecimalString'
+        payout:
+          type: object
+          required:
+          - total
+          properties:
+            total:
+              $ref: '#/components/schemas/DecimalString'
+        submission_expires_at:
+          $ref: '#/components/schemas/DateTime'
+        funding_expires_at:
+          $ref: '#/components/schemas/DateTime'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+    Order:
+      type: object
+      required:
+      - id
+      - quote_id
+      - offering_id
+      - reference_number
+      - exchange_rate
+      - effective_exchange_rate
+      - payin
+      - payout
+      - status
+      - funding_instructions
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
+        quote_id:
+          type: string
+          example: qt_01k4qpmvgxfsg9db9mjrtq9tk2
+        offering_id:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+        reference_number:
+          type: string
+          example: SS-ORD-20240115-001
+        external_reference_id:
+          type: string
+          example: ACME-REF-001
+        exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        effective_exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        payin:
+          type: object
+          required:
+          - external_payment_instrument
+          - total
+          - fee
+          - tax
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+            total:
+              $ref: '#/components/schemas/DecimalString'
+            fee:
+              $ref: '#/components/schemas/DecimalString'
+            tax:
+              $ref: '#/components/schemas/DecimalString'
+        payout:
+          type: object
+          required:
+          - external_payment_instrument
+          - total
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+            total:
+              $ref: '#/components/schemas/DecimalString'
+        status:
+          type: object
+          required:
+          - current_status
+          - status_history
+          properties:
+            current_status:
+              $ref: '#/components/schemas/OrderStatus'
+            status_history:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/OrderStatus'
+                  created_at:
+                    $ref: '#/components/schemas/DateTime'
+        funding_instructions:
+          $ref: '#/components/schemas/FundingInstructions'
+        retry_order_id:
+          type: string
+          example: ord_01k4qn4cxdefkargtccm4ycxth
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+        updated_at:
+          $ref: '#/components/schemas/DateTime'
+    ConfiguredRoutePayinLimits:
+      type: object
+      properties:
+        min:
+          type: string
+        max:
+          type: string
+    NewOrder:
+      type: object
+      required:
+      - quote_id
+      properties:
+        quote_id:
+          type: string
+    PaymentMethodSolanaAddress:
+      type: object
+      title: SOLANA_ADDRESS
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+    Currency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+    PaymentMethodNgnFundingDetails:
+      type: object
+      title: NGN_BANK_ACCOUNT (payin instrument details)
+      description: 'For NGN orders: echoes the payin external payment instrument. Order funding_instructions.details returns this shape.'
+      required:
+      - bank_name
+      - bank_account_number
+      - doc_id
+      properties:
+        bank_name:
+          type: string
+        bank_account_number:
+          type: string
+        doc_id:
+          type: string
+        account_holder_first_name:
+          type: string
+        account_holder_last_name:
+          type: string
+        account_holder_business_name:
+          type: string
+    OrderStatus:
+      type: string
+      enum:
+      - STEP_1_AWAITING_FUNDING
+      - STEP_2_FILLING_FX
+      - STEP_3_SETTLING_PAYOUT
+      - STEP_4_COMPLETED
+      - FAILED_FUNDING_EXPIRED
+      - FAILED_DECLINED_BY_LIQ_PROVIDER
+      - FAILED_REFUND_REQUESTED
+      - FAILED_REFUND_PROCESSED
+    ConfiguredRouteCostTier:
+      type: object
+      properties:
+        min:
+          type: string
+        max:
+          type: string
+        bps:
+          type: string
+          description: Indicative FX cost in basis points for this tier
+    ConfiguredRouteTradingHour:
+      type: object
+      properties:
+        day_of_week:
+          type: integer
+          description: Day of week (0=Sunday through 6=Saturday, matching configured offering trading hours storage)
+        start_time:
+          type: string
+        end_time:
+          type: string
+        timezone:
+          type: string
+          example: America/New_York
+    TradingPair:
+      type: object
+      required:
+      - payin_currency
+      - payout_currency
+      - hours_of_operation
+      properties:
+        payin_currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        payout_currency:
+          $ref: '#/components/schemas/PayoutCurrency'
+        hours_of_operation:
+          type: array
+          items:
+            type: object
+            required:
+            - open_time_utc
+            - close_time_utc
+            properties:
+              open_time_utc:
+                $ref: '#/components/schemas/DateTime'
+              close_time_utc:
+                $ref: '#/components/schemas/DateTime'
+    ExternalPaymentInstrumentStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - COMPLIANCE_HOLD
+      - ARCHIVED
+    DateTime:
+      type: string
+      format: date-time
+      description: ISO 8601 UTC timestamp (RFC3339)
+      example: '2024-01-15T10:00:00Z'
+    ConfiguredRoute:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Configured offering / route identifier
+        order_type:
+          type: string
+        payin_currency:
+          type: string
+          description: Pay-in money symbol for the route template
+        payout_currency:
+          type: string
+          description: Pay-out money symbol for the route template
+        liquidity_provider:
+          type: string
+        is_disabled:
+          type: boolean
+        estimated_settlement_time:
+          type: string
+        payin_limits:
+          $ref: '#/components/schemas/ConfiguredRoutePayinLimits'
+        indicative_cost_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredRouteCostTier'
+        trading_hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredRouteTradingHour'
+        has_trading_hours_configured:
+          type: boolean
+          description: False when no trading hour rows exist; in that case is_within_trading_hours is false.
+        is_within_trading_hours:
+          type: boolean
+          description: Whether current time falls in a configured window for today in the route's timezone(s).
+        inclusive_account_types:
+          type: array
+          items:
+            type: string
+          description: When non-empty, only these money-account types may be used for this route (in addition to org-level enabled types). When empty, no extra restriction.
+    Organization:
+      type: object
+      required:
+      - id
+      - name
+      - contact
+      - status
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+        name:
+          type: string
+          example: Acme Corporation
+        contact:
+          $ref: '#/components/schemas/Contact'
+        status:
+          type: object
+          required:
+          - current_status
+          - status_history
+          properties:
+            current_status:
+              $ref: '#/components/schemas/OrganizationStatus'
+            status_history:
+              type: array
+              items:
+                type: object
+                required:
+                - status
+                - created_at
+                properties:
+                  status:
+                    $ref: '#/components/schemas/OrganizationStatus'
+                  created_at:
+                    $ref: '#/components/schemas/DateTime'
+          example:
+            current_status: ACTIVE
+            status_history:
+            - status: ACTIVE
+              created_at: '2024-01-15T10:00:00Z'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+          example: '2024-01-15T10:00:00Z'
+        updated_at:
+          $ref: '#/components/schemas/DateTime'
+          example: '2024-01-15T10:00:00Z'
+    FundingInstructions:
+      type: object
+      required:
+      - currency
+      - method
+      - details
+      properties:
+        currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        method:
+          $ref: '#/components/schemas/PaymentMethod'
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
+          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
+          - $ref: '#/components/schemas/PaymentMethodNgnFundingDetails'
+    ExternalPaymentInstrument:
+      type: object
+      required:
+      - id
+      - alias
+      - currency
+      - method
+      - status
+      - details
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
+        alias:
+          type: string
+          example: My Primary Wallet
+        currency:
+          $ref: '#/components/schemas/Currency'
+        method:
+          $ref: '#/components/schemas/PaymentMethod'
+        status:
+          type: object
+          properties:
+            current_status:
+              $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
+            status_history:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
+                  created_at:
+                    $ref: '#/components/schemas/DateTime'
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
+          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+        updated_at:
+          $ref: '#/components/schemas/DateTime'
+    NewQuote:
+      type: object
+      required:
+      - offering_id
+      properties:
+        offering_id:
+          type: string
+      oneOf:
+      - required:
+        - payin_amount
+        properties:
+          payin_amount:
+            $ref: '#/components/schemas/DecimalString'
+      - required:
+        - payout_amount
+        properties:
+          payout_amount:
+            $ref: '#/components/schemas/DecimalString'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Use your API key as the bearer token
+      x-default: DEFAULT-TOKEN-HERE
