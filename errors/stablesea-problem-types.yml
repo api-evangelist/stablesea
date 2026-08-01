@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+format: custom-json
+rfc9457: false
+envelope:
+  content_type: application/json
+  fields:
+    error:
+      type: integer
+      description: Numeric error code (mirrors HTTP status), e.g. 400.
+    message:
+      type: string
+      description: Human-readable error description.
+  example:
+    error: 400
+    message: Invalid organization data provided
+notes: >-
+  The OpenAPI description declares a single reusable Error schema ({error, message})
+  but does not enumerate per-operation 4xx/5xx responses; success responses (200/201)
+  are the only status codes documented per path. This catalog reflects the shared
+  error envelope only. Not RFC 9457 problem+json.
+problem_types: []

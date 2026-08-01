@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+skills:
+- name: place-payout-order
+  file: stablesea-place-payout-order.md
+  description: >-
+    End-to-end stablecoin payout flow — set up an organization and payout
+    instrument, list liquidity providers, create an offering, quote it, and place
+    the order with idempotent writes.

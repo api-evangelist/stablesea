@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+status: candidate
+official: false
+summary: >-
+  No official hosted/remote MCP server was found for Stable Sea. This is a CANDIDATE
+  tool list derived from the Terminal API's OpenAPI operations — a blueprint for an
+  MCP server, not a published one.
+transport: not-available
+auth:
+  style: bearer
+  note: Tools would forward the caller's Stable Sea API key as the bearer token.
+tools:
+- name: list_liquidity_providers
+  op: GET /liquidity-providers
+- name: get_exchange_rate
+  op: GET /liquidity-providers/{provider_name}/exchange-rate
+- name: create_organization
+  op: POST /organizations
+- name: list_organizations
+  op: GET /organizations
+- name: get_organization
+  op: GET /organizations/{organization_id}
+- name: list_configured_routes
+  op: GET /organizations/{organization_id}/configured-routes
+- name: create_external_payment_instrument
+  op: POST /organizations/{organization_id}/external_payment_instruments
+- name: list_external_payment_instruments
+  op: GET /organizations/{organization_id}/external_payment_instruments
+- name: get_external_payment_instrument
+  op: GET /organizations/{organization_id}/external_payment_instruments/{external_payment_instrument_id}
+- name: archive_external_payment_instrument
+  op: DELETE /organizations/{organization_id}/external_payment_instruments/{external_payment_instrument_id}
+- name: create_offering
+  op: POST /organizations/{organization_id}/offerings
+- name: get_offering
+  op: GET /organizations/{organization_id}/offerings/{offering_id}
+- name: create_quote
+  op: POST /organizations/{organization_id}/quotes
+- name: get_quote
+  op: GET /organizations/{organization_id}/quotes/{quote_id}
+- name: create_order
+  op: POST /organizations/{organization_id}/orders
+- name: list_orders
+  op: GET /organizations/{organization_id}/orders
+- name: get_order
+  op: GET /organizations/{organization_id}/orders/{order_id}

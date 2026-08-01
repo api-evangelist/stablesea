@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+entities:
+- name: Organization
+  id: id
+  fields: [id, name, contact, status, created_at, updated_at]
+- name: Contact
+  embedded_in: Organization
+- name: LiquidityProvider
+  id: provider_name
+  fields: [name, trading_pairs, hours_of_operation]
+- name: ExchangeRate
+  fields: [trading_pair, rate]
+- name: ExternalPaymentInstrument
+  id: id
+  fields: [id, alias, currency, method, status, details, created_at, updated_at]
+- name: Offering
+  id: id
+  fields: [id, order_type, payin, payout, indicative_exchange_rate, liquidity_provider, estimated_settlement_time, created_at]
+- name: Quote
+  id: id
+  fields: [id, offering_id, exchange_rate, payin, payout, submission_expires_at, funding_expires_at, created_at]
+- name: Order
+  id: id
+  fields: [id, quote_id, offering_id, reference_number, external_reference_id, exchange_rate, payin, payout, status, funding_instructions, retry_order_id, created_at, updated_at]
+relationships:
+- from: ExternalPaymentInstrument
+  type: belongs_to
+  to: Organization
+  via: path organization_id
+- from: Offering
+  type: belongs_to
+  to: Organization
+  via: path organization_id
+- from: Offering
+  type: has_one
+  to: LiquidityProvider
+  via: liquidity_provider
+- from: Quote
+  type: belongs_to
+  to: Organization
+  via: path organization_id
+- from: Quote
+  type: has_one
+  to: Offering
+  via: offering_id
+- from: Order
+  type: belongs_to
+  to: Organization
+  via: path organization_id
+- from: Order
+  type: has_one
+  to: Quote
+  via: quote_id
+- from: Order
+  type: has_one
+  to: Offering
+  via: offering_id
+- from: Order
+  type: has_one
+  to: Order
+  via: retry_order_id
+  note: Self-reference — a retry order points at the order it retries.
+notes: >-
+  Organization is the root aggregate; external payment instruments, offerings,
+  quotes, and orders are all scoped under an organization_id path segment. The
+  payment flow is Offering -> Quote -> Order.

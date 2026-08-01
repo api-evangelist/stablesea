@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; auth is HTTP bearer (API key as bearer token).
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect securityScheme or discovery document (/.well-known/openid-configuration returned 404).
+- id: rfc9457
+  conforms: false
+  evidence: Errors use a custom {error, message} JSON envelope, not application/problem+json.
+- id: idempotency
+  conforms: true
+  evidence: All create (POST) operations accept an Idempotency-Key request header.
+- id: pagination
+  conforms: false
+  evidence: List operations declare no pagination parameters in the OpenAPI description.
+- id: fapi
+  conforms: false
+  evidence: No FAPI security profile or supporting metadata documented.
+- id: json:api
+  conforms: false
+  evidence: Responses are plain JSON resources; no JSON:API media type or envelope.
+- id: fhir
+  conforms: false
+  evidence: Not a healthcare API.
+- id: scim
+  conforms: false
+  evidence: No SCIM user/group provisioning surface.
+- id: odata
+  conforms: false
+  evidence: No OData query conventions.
+- id: psd2
+  conforms: false
+  evidence: No PSD2 / open-banking conformance claim in the docs or spec.

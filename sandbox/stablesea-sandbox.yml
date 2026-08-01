@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+summary: >-
+  The Stable Sea Terminal API publishes a dedicated sandbox environment as its
+  OpenAPI server. Test and live are separated by host.
+environments:
+- name: sandbox
+  base_url: https://api-sandbox.stablesea.com/v1
+  source: openapi servers[0]
+  purpose: Test integrations against the Terminal API without moving real funds.
+- name: production
+  base_url: https://api.stablesea.com/v1
+  source: derived-from-host
+  note: >-
+    Production host api.stablesea.com resolves (root returns a structured
+    route_not_found error). The exact production base path is not declared in the
+    published spec; v1 is inferred from the sandbox server path.
+authentication:
+  style: bearer
+  note: The same bearer API-key scheme is used; obtain keys via the Terminal dashboard / developer onboarding.
+test_values:
+  note: >-
+    No published test cards, test bank accounts, or hosted test tokens were found in
+    the documentation. None are fabricated here.
+test_clocks: not-documented
+fixtures: not-documented

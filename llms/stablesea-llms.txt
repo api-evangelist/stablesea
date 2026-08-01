@@ -1,0 +1,57 @@
+# Stable Sea Terminal API
+
+## Docs
+
+- [Archive External Payment Instrument](https://docs.stablesea.com/api-reference/archive-external-payment-instrument.md): Archive an external account for a customer
+- [Create External Payment Instrument](https://docs.stablesea.com/api-reference/create-external-payment-instrument.md): Creates an external account for an organization to receive payouts
+- [Create Offerings](https://docs.stablesea.com/api-reference/create-offerings.md): Creates offerings for an organization
+- [Create Order](https://docs.stablesea.com/api-reference/create-order.md): Creates an order for an organization
+- [Create Organization](https://docs.stablesea.com/api-reference/create-organization.md): Creates a new organization
+- [Create Quote](https://docs.stablesea.com/api-reference/create-quote.md): Creates a quote for an organization
+- [Archive External Payment Instrument](https://docs.stablesea.com/api-reference/external-payment-instruments/archive.md): Archive an external account for a organization
+- [Create External Payment Instrument](https://docs.stablesea.com/api-reference/external-payment-instruments/create.md): Creates an external account for an organization to receive payouts
+- [Get External Payment Instrument](https://docs.stablesea.com/api-reference/external-payment-instruments/get.md): Fetch a specific external payment instrument for a organization
+- [List External Payment Instruments](https://docs.stablesea.com/api-reference/external-payment-instruments/list.md): Fetch all external payment instruments for an organization
+- [Get Exchange Rate](https://docs.stablesea.com/api-reference/get-exchange-rate.md): Get current exchange rate for a specific liquidity provider
+- [Get External Payment Instrument](https://docs.stablesea.com/api-reference/get-external-payment-instrument.md): Fetch a specific external payment instrument for an organization
+- [Get Offering](https://docs.stablesea.com/api-reference/get-offering.md): Retrieve details for a specific offering
+- [Get Order](https://docs.stablesea.com/api-reference/get-order.md): Retrieve details for a specific order
+- [Get Organization](https://docs.stablesea.com/api-reference/get-organization.md): Retrieve details for a specific organization
+- [Get Quote](https://docs.stablesea.com/api-reference/get-quote.md): Retrieve details for a specific quote
+- [Get Exchange Rate](https://docs.stablesea.com/api-reference/liquidity-providers/get-exchange-rate.md): Get current exchange rate for a specific liquidity provider
+- [List Liquidity Providers](https://docs.stablesea.com/api-reference/liquidity-providers/list.md): Returns all available liquidity providers with their trading pairs and hours of operation
+- [List configured routes](https://docs.stablesea.com/api-reference/list-configured-routes.md): Returns product route templates for the organization (pay-in and pay-out currencies, limits, cost tiers, and trading hours). Use this to see which currency pairs are enabled for your org before materialized offerings appear from POST /organizations/{organization_id}/offerings. When inclusive_account…
+- [List External Payment Instruments](https://docs.stablesea.com/api-reference/list-external-payment-instruments.md): Fetch all external payment instruments for a customer
+- [List Liquidity Providers](https://docs.stablesea.com/api-reference/list-liquidity-providers.md): Returns all available liquidity providers with their trading pairs and hours of operation
+- [List Orders](https://docs.stablesea.com/api-reference/list-orders.md): Returns all orders for a customer
+- [List Organizations](https://docs.stablesea.com/api-reference/list-organizations.md): Returns all organizations
+- [Create Offerings](https://docs.stablesea.com/api-reference/offerings/create.md): Creates offerings for an organization
+- [Get Offering](https://docs.stablesea.com/api-reference/offerings/get.md): Retrieve details for a specific offering
+- [Create Order](https://docs.stablesea.com/api-reference/orders/create.md): Creates an order for an organization
+- [Get Order](https://docs.stablesea.com/api-reference/orders/get.md): Retrieve details for a specific order
+- [List Orders](https://docs.stablesea.com/api-reference/orders/list.md): Returns all orders for a organization
+- [Simulate demo funding (sandbox)](https://docs.stablesea.com/api-reference/orders/simulate-demo-funding.md): Advance a demo order past awaiting funding without sending a real transfer
+- [List configured routes](https://docs.stablesea.com/api-reference/organizations/configured-routes-list.md): List product route templates (pay-in and pay-out currencies) enabled for an organization
+- [Create Organization](https://docs.stablesea.com/api-reference/organizations/create.md): Creates a new organization
+- [Get Organization](https://docs.stablesea.com/api-reference/organizations/get.md): Retrieve details for a specific organization
+- [List Organizations](https://docs.stablesea.com/api-reference/organizations/list.md): Returns all organizations
+- [Authentication](https://docs.stablesea.com/api-reference/overview/authentication.md)
+- [Error handling](https://docs.stablesea.com/api-reference/overview/error-handling.md)
+- [Idempotency](https://docs.stablesea.com/api-reference/overview/idempotency.md): Preventing duplicate operations with idempotency keys
+- [Making Requests](https://docs.stablesea.com/api-reference/overview/making-requests.md): How to make requests to the Stable Sea Terminal API
+- [Reliability](https://docs.stablesea.com/api-reference/overview/reliability.md): Enterprise-grade reliability commitments and system performance
+- [Create Quote](https://docs.stablesea.com/api-reference/quotes/create.md): Creates a quote for an organization
+- [Get Quote](https://docs.stablesea.com/api-reference/quotes/get.md): Retrieve details for a specific quote
+- [Enumerations](https://docs.stablesea.com/api-reference/resources/enumerations.md): Enumeration values used throughout the API
+- [External Payment Instrument](https://docs.stablesea.com/api-reference/resources/external-payment-instrument.md): External Payment Instrument resource schema
+- [Offering](https://docs.stablesea.com/api-reference/resources/offering.md): Offering resource schema
+- [Order](https://docs.stablesea.com/api-reference/resources/order.md): Order resource schema
+- [Organization](https://docs.stablesea.com/api-reference/resources/organization.md): Organization resource schema
+- [Quote](https://docs.stablesea.com/api-reference/resources/quote.md): Quote resource schema
+- [NGN (Nigerian) pay-in flow](https://docs.stablesea.com/guides/ngn-payin-flow.md): Use the Terminal API to collect Nigerian Naira (NGN) and surface pay-in instructions to end users
+- [Order Flow Integration Guide](https://docs.stablesea.com/guides/order-flow-walkthrough.md): Production-ready integration guide for implementing the Stable Sea Terminal API
+- [SDK Quickstart](https://docs.stablesea.com/guides/sdk-quickstart.md): Get started with the Stable Sea Python SDK for organizations, quotes, orders, and API keys
+
+## OpenAPI Specs
+
+- [openapi](https://docs.stablesea.com/api-reference/openapi.json)

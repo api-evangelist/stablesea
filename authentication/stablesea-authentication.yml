@@ -1,0 +1,13 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Use your API key as the bearer token
+  sources:
+  - openapi/stablesea-openapi.json

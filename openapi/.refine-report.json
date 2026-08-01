@@ -1,0 +1,16 @@
+{
+  "provider": "stablesea",
+  "sources": [
+    "stablesea-liquidity-providers-api-openapi.yml",
+    "stablesea-organizations-api-openapi.yml"
+  ],
+  "outputs": [
+    "stablesea-liquidity-providers-api-openapi.yml",
+    "stablesea-organizations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

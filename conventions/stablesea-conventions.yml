@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/stablesea-openapi.json
+api: Stable Sea Terminal API
+summary: >-
+  Cross-cutting runtime semantics for the Stable Sea Terminal API, derived from the
+  published OpenAPI 3.1 description.
+authentication:
+  style: bearer
+  scheme: http-bearer
+  header: Authorization
+  format: "Authorization: Bearer <api_key>"
+  note: The API key is presented as the bearer token (securityScheme bearerAuth).
+  ref: authentication/stablesea-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  scope: All create (POST) operations accept an Idempotency-Key request header for safe retries.
+  operations:
+  - POST /organizations
+  - POST /organizations/{organization_id}/external_payment_instruments
+  - POST /organizations/{organization_id}/offerings
+  - POST /organizations/{organization_id}/quotes
+  - POST /organizations/{organization_id}/orders
+  retention: not-documented
+pagination:
+  style: not-documented
+  note: >-
+    List operations (GET /organizations, /orders, /external_payment_instruments,
+    /liquidity-providers) declare no pagination parameters in the current spec.
+versioning:
+  style: uri-path
+  current: v1
+  base_path: /v1
+  note: Version is carried in the server base path (https://api-sandbox.stablesea.com/v1).
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  shape:
+    error: integer (numeric error code, e.g. 400)
+    message: string (human-readable description)
+  ref: errors/stablesea-problem-types.yml
+request_tracing:
+  request_id_header: not-documented
+rate_limiting:
+  signaling: not-documented
+resource_identifiers:
+  note: >-
+    Path resources use opaque ids — organization_id, external_payment_instrument_id,
+    offering_id, quote_id, order_id, and provider_name for liquidity providers.
+cross_links:
+  authentication: authentication/stablesea-authentication.yml
+  errors: errors/stablesea-problem-types.yml
+  data_model: data-model/stablesea-data-model.yml

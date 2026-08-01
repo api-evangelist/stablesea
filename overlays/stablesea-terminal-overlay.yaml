@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: Stable Sea Terminal API — API Evangelist enrichment overlay
+  version: 1.0.0
+extends: ../openapi/stablesea-openapi.json
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: openapi/stablesea-openapi.json
+  note: >-
+    Non-destructive enhancements captured by the API Evangelist enrichment pipeline.
+    Does not mutate the upstream specification.
+actions:
+- target: $.info
+  description: Add machine-readable contact and documentation pointers.
+  update:
+    contact:
+      name: Stable Sea Developers
+      url: https://www.stablesea.com/developers
+    x-documentation: https://docs.stablesea.com
+    x-api-reference: https://docs.stablesea.com/api-reference
+- target: $.info
+  description: Record the idempotency convention on create operations.
+  update:
+    x-idempotency:
+      header: Idempotency-Key
+      applies-to: all POST (create) operations
+- target: $.components.securitySchemes.bearerAuth
+  description: Clarify the bearer token is the account API key.
+  update:
+    x-notes: The bearer token is the organization's Stable Sea API key.
+- target: $.servers
+  description: Note the production host alongside the published sandbox server.
+  update:
+  - url: https://api-sandbox.stablesea.com/v1
+    description: Sandbox (published)
+  - url: https://api.stablesea.com/v1
+    description: Production (host resolves; base path inferred, not vendor-declared)
