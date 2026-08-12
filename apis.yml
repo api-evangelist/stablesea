@@ -112,6 +112,12 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/stablesea-place-payout-order.md
+- type: MCPServer
+  url: mcp/stablesea-mcp.yml
+- type: Overlay
+  url: overlays/stablesea-terminal-overlay.yaml
 - type: DomainSecurity
   url: security/stablesea-domain-security.yml
 - type: Website
