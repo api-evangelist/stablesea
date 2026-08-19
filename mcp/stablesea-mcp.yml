@@ -4,10 +4,9 @@ source: openapi/stablesea-openapi.json
 api: Stable Sea Terminal API
 status: candidate
 official: false
-summary: >-
-  No official hosted/remote MCP server was found for Stable Sea. This is a CANDIDATE
-  tool list derived from the Terminal API's OpenAPI operations — a blueprint for an
-  MCP server, not a published one.
+summary: No official hosted/remote MCP server was found for Stable Sea. This is a CANDIDATE tool list
+  derived from the Terminal API's OpenAPI operations — a blueprint for an MCP server, not a published
+  one.
 transport: not-available
 auth:
   style: bearer
@@ -47,3 +46,9 @@ tools:
   op: GET /organizations/{organization_id}/orders
 - name: get_order
   op: GET /organizations/{organization_id}/orders/{order_id}
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census

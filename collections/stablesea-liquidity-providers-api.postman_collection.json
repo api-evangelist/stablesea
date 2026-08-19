@@ -1,0 +1,217 @@
+{
+  "item": [
+    {
+      "id": "9195cfdb-6fbf-4488-ade7-a67517385e42",
+      "name": "Liquidity Providers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4795710a-cf4e-49d3-81c4-2d758d515f48",
+          "name": "List Liquidity Providers",
+          "request": {
+            "name": "List Liquidity Providers",
+            "description": {
+              "content": "Returns all available liquidity providers with their trading pairs and hours of operation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "liquidity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "087b2467-49d8-44f7-85d3-b4d559395982",
+              "name": "Liquidity providers response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "liquidity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"ALPHA\",\n      \"trading_pairs\": [\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"ALPHA\",\n      \"trading_pairs\": [\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29e842fc-66f4-458c-93b0-ac1532156910",
+          "name": "Get Exchange Rate",
+          "request": {
+            "name": "Get Exchange Rate",
+            "description": {
+              "content": "Get current exchange rate for a specific liquidity provider",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "liquidity-providers",
+                ":provider_name",
+                "exchange-rate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "provider_name",
+                  "description": "(Required) Name of the liquidity provider"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b66b8e54-a592-4bea-8542-d45877f9f611",
+              "name": "Exchange rate response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "liquidity-providers",
+                    ":provider_name",
+                    "exchange-rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "provider_name",
+                      "description": "(Required) Name of the liquidity provider"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"payin_currency\": \"USDC\",\n    \"payout_currency\": \"COP\",\n    \"exchange_rate\": \"3921.8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.stablesea.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1a93cc5-0610-46c3-b502-a1425cfed926",
+    "name": "Stable Sea Terminal Liquidity Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing terminal operations, organizations, quotes, and orders in the Stable Sea shipping platform",
+      "type": "text/plain"
+    }
+  }
+}

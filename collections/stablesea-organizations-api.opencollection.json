@@ -1,0 +1,369 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stable Sea Terminal Liquidity Providers Organizations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations"
+          },
+          "docs": "Returns all organizations"
+        },
+        {
+          "info": {
+            "name": "Create Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new organization"
+        },
+        {
+          "info": {
+            "name": "Get Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific organization"
+        },
+        {
+          "info": {
+            "name": "List configured routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/configured-routes",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ]
+          },
+          "docs": "Returns product route templates for the organization (pay-in and pay-out currencies, limits, cost tiers, and trading hours). Use this to see which currency pairs are enabled for your org before materialized offerings appear from POST /organizations/{organization_id}/offerings. When inclusive_account_types is empty, there is no extra type filter beyond org-level enabled money-account types."
+        },
+        {
+          "info": {
+            "name": "List External Payment Instruments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/external_payment_instruments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ]
+          },
+          "docs": "Fetch all external payment instruments for a customer"
+        },
+        {
+          "info": {
+            "name": "Create External Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/external_payment_instruments",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an external account for an organization to receive payouts"
+        },
+        {
+          "info": {
+            "name": "Get External Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/external_payment_instruments/:external_payment_instrument_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              },
+              {
+                "name": "external_payment_instrument_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of external payment instrument"
+              }
+            ]
+          },
+          "docs": "Fetch a specific external payment instrument for an organization"
+        },
+        {
+          "info": {
+            "name": "Archive External Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/external_payment_instruments/:external_payment_instrument_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              },
+              {
+                "name": "external_payment_instrument_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of external payment instrument"
+              }
+            ]
+          },
+          "docs": "Archive an external account for a customer"
+        },
+        {
+          "info": {
+            "name": "Create Offerings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/offerings",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ]
+          },
+          "docs": "Creates offerings for an organization"
+        },
+        {
+          "info": {
+            "name": "Get Offering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/offerings/:offering_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              },
+              {
+                "name": "offering_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of offering"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific offering"
+        },
+        {
+          "info": {
+            "name": "Create Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/quotes",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a quote for an organization"
+        },
+        {
+          "info": {
+            "name": "Get Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/quotes/:quote_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              },
+              {
+                "name": "quote_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of quote"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific quote"
+        },
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/orders",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ]
+          },
+          "docs": "Returns all orders for a customer"
+        },
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/orders",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an order for an organization"
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/organizations/:organization_id/orders/:order_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of organization"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of order"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific order"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

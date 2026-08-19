@@ -1,0 +1,1693 @@
+{
+  "item": [
+    {
+      "id": "a6bbbe7a-6be1-4684-89e3-6f9ff33f63b1",
+      "name": "Organizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a28575da-0ad2-48c7-967f-fc39bb7911d9",
+          "name": "Create Organization",
+          "request": {
+            "name": "Create Organization",
+            "description": {
+              "content": "Creates a new organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key to prevent duplicate operations",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"contact\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e182658b-4caa-431c-b779-fc391c7cfd81",
+              "name": "Organization created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key to prevent duplicate operations",
+                    "key": "Idempotency-Key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Acme Corporation\",\n  \"contact\": {\n    \"email\": \"john.doe@acme.com\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"org_01k2cm4r59e5z8k5ggrbbxjcwy\",\n    \"name\": \"Acme Corporation\",\n    \"contact\": {\n      \"email\": \"john.doe@acme.com\",\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"status\": {\n      \"current_status\": \"ACTIVE\",\n      \"status_history\": [\n        {\n          \"status\": \"ACTIVE\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef241b6f-985a-4dd8-a3dc-fa360901582e",
+          "name": "List Organizations",
+          "request": {
+            "name": "List Organizations",
+            "description": {
+              "content": "Returns all organizations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ee3f4e5-0afd-458d-bf82-da5188602664",
+              "name": "Organizations response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"org_01k2cm4r59e5z8k5ggrbbxjcwy\",\n      \"name\": \"Acme Corporation\",\n      \"contact\": {\n        \"email\": \"john.doe@acme.com\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"status\": {\n        \"current_status\": \"ACTIVE\",\n        \"status_history\": [\n          {\n            \"status\": \"ACTIVE\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\"\n    },\n    {\n      \"id\": \"org_01k2cm4r59e5z8k5ggrbbxjcwy\",\n      \"name\": \"Acme Corporation\",\n      \"contact\": {\n        \"email\": \"john.doe@acme.com\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"status\": {\n        \"current_status\": \"ACTIVE\",\n        \"status_history\": [\n          {\n            \"status\": \"ACTIVE\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f715f5e-9b26-442d-8738-07c97826e0b8",
+          "name": "Get Organization",
+          "request": {
+            "name": "Get Organization",
+            "description": {
+              "content": "Retrieve details for a specific organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "259d0367-259c-47c8-8383-35db47626f77",
+              "name": "Customer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"org_01k2cm4r59e5z8k5ggrbbxjcwy\",\n    \"name\": \"Acme Corporation\",\n    \"contact\": {\n      \"email\": \"john.doe@acme.com\",\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"status\": {\n      \"current_status\": \"ACTIVE\",\n      \"status_history\": [\n        {\n          \"status\": \"ACTIVE\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b388c277-5ddb-4cac-a6d3-348ea8f4274a",
+          "name": "List configured routes",
+          "request": {
+            "name": "List configured routes",
+            "description": {
+              "content": "Returns product route templates for the organization (pay-in and pay-out currencies, limits, cost tiers, and trading hours). Use this to see which currency pairs are enabled for your org before materialized offerings appear from POST /organizations/{organization_id}/offerings. When inclusive_account_types is empty, there is no extra type filter beyond org-level enabled money-account types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "configured-routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3e45dd0-4ceb-4cbb-8b10-238ab7c60cb5",
+              "name": "Configured routes for the organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "configured-routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"order_type\": \"string\",\n      \"payin_currency\": \"string\",\n      \"payout_currency\": \"string\",\n      \"liquidity_provider\": \"string\",\n      \"is_disabled\": false,\n      \"estimated_settlement_time\": \"string\",\n      \"payin_limits\": {\n        \"min\": \"string\",\n        \"max\": \"string\"\n      },\n      \"indicative_cost_tiers\": [\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        },\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        }\n      ],\n      \"trading_hours\": [\n        {\n          \"day_of_week\": 437,\n          \"start_time\": \"string\",\n          \"end_time\": \"string\",\n          \"timezone\": \"America/New_York\"\n        },\n        {\n          \"day_of_week\": 5123,\n          \"start_time\": \"string\",\n          \"end_time\": \"string\",\n          \"timezone\": \"America/New_York\"\n        }\n      ],\n      \"has_trading_hours_configured\": false,\n      \"is_within_trading_hours\": false,\n      \"inclusive_account_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"order_type\": \"string\",\n      \"payin_currency\": \"string\",\n      \"payout_currency\": \"string\",\n      \"liquidity_provider\": \"string\",\n      \"is_disabled\": false,\n      \"estimated_settlement_time\": \"string\",\n      \"payin_limits\": {\n        \"min\": \"string\",\n        \"max\": \"string\"\n      },\n      \"indicative_cost_tiers\": [\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        },\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        }\n      ],\n      \"trading_hours\": [\n        {\n          \"day_of_week\": 8213,\n          \"start_time\": \"string\",\n          \"end_time\": \"string\",\n          \"timezone\": \"America/New_York\"\n        },\n        {\n          \"day_of_week\": 2878,\n          \"start_time\": \"string\",\n          \"end_time\": \"string\",\n          \"timezone\": \"America/New_York\"\n        }\n      ],\n      \"has_trading_hours_configured\": true,\n      \"is_within_trading_hours\": true,\n      \"inclusive_account_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbba4d27-2a2b-4730-b2bd-e7f8ab77593a",
+          "name": "Create External Payment Instrument",
+          "request": {
+            "name": "Create External Payment Instrument",
+            "description": {
+              "content": "Creates an external account for an organization to receive payouts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "external_payment_instruments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key to prevent duplicate operations",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alias\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"method\": \"<string>\",\n  \"details\": {\n    \"address\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a68ae92-e42a-42fe-ae4e-ebc4e7701e6a",
+              "name": "External payment instrument created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "external_payment_instruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key to prevent duplicate operations",
+                    "key": "Idempotency-Key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"My Primary Wallet\",\n  \"currency\": \"NGN\",\n  \"method\": \"SOLANA_ADDRESS\",\n  \"details\": {\n    \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"alias\": \"My Primary Wallet\",\n    \"currency\": \"MXN\",\n    \"method\": \"COP_BANK_ACCOUNT\",\n    \"status\": {\n      \"current_status\": \"COMPLIANCE_HOLD\",\n      \"status_history\": [\n        {\n          \"status\": \"ACTIVE\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        },\n        {\n          \"status\": \"COMPLIANCE_HOLD\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"details\": {\n      \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0527bd0-527f-4a22-bc03-b0718ca3f20c",
+          "name": "List External Payment Instruments",
+          "request": {
+            "name": "List External Payment Instruments",
+            "description": {
+              "content": "Fetch all external payment instruments for a customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "external_payment_instruments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abdc0bf3-bb56-4e25-bf1d-1ba9c5cc73a1",
+              "name": "External payment instruments response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "external_payment_instruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n      \"alias\": \"My Primary Wallet\",\n      \"currency\": \"MXN\",\n      \"method\": \"SOLANA_ADDRESS\",\n      \"status\": {\n        \"current_status\": \"ACTIVE\",\n        \"status_history\": [\n          {\n            \"status\": \"COMPLIANCE_HOLD\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          },\n          {\n            \"status\": \"COMPLIANCE_HOLD\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"details\": {\n        \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\"\n    },\n    {\n      \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n      \"alias\": \"My Primary Wallet\",\n      \"currency\": \"USDC\",\n      \"method\": \"NGN_BANK_ACCOUNT\",\n      \"status\": {\n        \"current_status\": \"ARCHIVED\",\n        \"status_history\": [\n          {\n            \"status\": \"ARCHIVED\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          },\n          {\n            \"status\": \"ARCHIVED\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"details\": {\n        \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8f41789-5033-407a-a3c6-b5a113ca76e8",
+          "name": "Get External Payment Instrument",
+          "request": {
+            "name": "Get External Payment Instrument",
+            "description": {
+              "content": "Fetch a specific external payment instrument for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "external_payment_instruments",
+                ":external_payment_instrument_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_payment_instrument_id",
+                  "description": "(Required) ID of external payment instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d8d6d19-7219-440a-85fc-f2893d809ed2",
+              "name": "External payment instrument details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "external_payment_instruments",
+                    ":external_payment_instrument_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_payment_instrument_id",
+                      "description": "(Required) ID of external payment instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"alias\": \"My Primary Wallet\",\n    \"currency\": \"MXN\",\n    \"method\": \"COP_BANK_ACCOUNT\",\n    \"status\": {\n      \"current_status\": \"COMPLIANCE_HOLD\",\n      \"status_history\": [\n        {\n          \"status\": \"ACTIVE\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        },\n        {\n          \"status\": \"COMPLIANCE_HOLD\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"details\": {\n      \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a21c0666-d324-4274-9948-db6e263c1212",
+          "name": "Archive External Payment Instrument",
+          "request": {
+            "name": "Archive External Payment Instrument",
+            "description": {
+              "content": "Archive an external account for a customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "external_payment_instruments",
+                ":external_payment_instrument_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_payment_instrument_id",
+                  "description": "(Required) ID of external payment instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35a50517-1c85-4638-81a9-5481482bde73",
+              "name": "External payment instrument archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "external_payment_instruments",
+                    ":external_payment_instrument_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_payment_instrument_id",
+                      "description": "(Required) ID of external payment instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"External payment instrument archived successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89630547-bba3-4e5c-a650-482ad1ce7929",
+          "name": "Create Offerings",
+          "request": {
+            "name": "Create Offerings",
+            "description": {
+              "content": "Creates offerings for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "offerings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key to prevent duplicate operations",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c770ca3-0c6d-46f7-9049-72417c149508",
+              "name": "Offerings created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key to prevent duplicate operations",
+                    "key": "Idempotency-Key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n      \"order_type\": \"LIMIT\",\n      \"payin\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"BRL\",\n          \"method\": \"COP_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"ARCHIVED\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"limits\": {\n          \"min\": \"string\",\n          \"max\": \"string\"\n        },\n        \"indicative_cost_tiers\": [\n          {\n            \"min\": \"string\",\n            \"max\": \"string\",\n            \"bps\": \"string\"\n          },\n          {\n            \"min\": \"string\",\n            \"max\": \"string\",\n            \"bps\": \"string\"\n          }\n        ]\n      },\n      \"payout\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"COP\",\n          \"method\": \"SOLANA_ADDRESS\",\n          \"status\": {\n            \"current_status\": \"ARCHIVED\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        }\n      },\n      \"indicative_exchange_rate\": \"string\",\n      \"current_day_hours_of_operation\": {\n        \"open_utc\": \"2024-01-15T10:00:00Z\",\n        \"close_utc\": \"2024-01-15T10:00:00Z\"\n      },\n      \"liquidity_provider\": {\n        \"name\": \"ALPHA\",\n        \"trading_pairs\": [\n          {\n            \"payin_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payout_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hours_of_operation\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"payin_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payout_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hours_of_operation\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"estimated_settlement_time\": \"T+0\",\n      \"created_at\": \"2024-01-15T10:00:00Z\"\n    },\n    {\n      \"id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n      \"order_type\": \"LIMIT\",\n      \"payin\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"BRL\",\n          \"method\": \"SOLANA_ADDRESS\",\n          \"status\": {\n            \"current_status\": \"COMPLIANCE_HOLD\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"limits\": {\n          \"min\": \"string\",\n          \"max\": \"string\"\n        },\n        \"indicative_cost_tiers\": [\n          {\n            \"min\": \"string\",\n            \"max\": \"string\",\n            \"bps\": \"string\"\n          },\n          {\n            \"min\": \"string\",\n            \"max\": \"string\",\n            \"bps\": \"string\"\n          }\n        ]\n      },\n      \"payout\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"COP\",\n          \"method\": \"COP_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"COMPLIANCE_HOLD\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        }\n      },\n      \"indicative_exchange_rate\": \"string\",\n      \"current_day_hours_of_operation\": {\n        \"open_utc\": \"2024-01-15T10:00:00Z\",\n        \"close_utc\": \"2024-01-15T10:00:00Z\"\n      },\n      \"liquidity_provider\": {\n        \"name\": \"ALPHA\",\n        \"trading_pairs\": [\n          {\n            \"payin_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payout_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hours_of_operation\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"payin_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payout_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hours_of_operation\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"estimated_settlement_time\": \"T+1\",\n      \"created_at\": \"2024-01-15T10:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7726d606-5530-48d2-b8fd-0c5c6a37ec4d",
+          "name": "Get Offering",
+          "request": {
+            "name": "Get Offering",
+            "description": {
+              "content": "Retrieve details for a specific offering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "offerings",
+                ":offering_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offering_id",
+                  "description": "(Required) ID of offering"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f8b7915-b826-42df-8a95-0830905468ab",
+              "name": "Offering details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "offerings",
+                    ":offering_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offering_id",
+                      "description": "(Required) ID of offering"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n    \"order_type\": \"MARKET\",\n    \"payin\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"COP\",\n        \"method\": \"NGN_BANK_ACCOUNT\",\n        \"status\": {\n          \"current_status\": \"COMPLIANCE_HOLD\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      },\n      \"limits\": {\n        \"min\": \"string\",\n        \"max\": \"string\"\n      },\n      \"indicative_cost_tiers\": [\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        },\n        {\n          \"min\": \"string\",\n          \"max\": \"string\",\n          \"bps\": \"string\"\n        }\n      ]\n    },\n    \"payout\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"MXN\",\n        \"method\": \"NGN_BANK_ACCOUNT\",\n        \"status\": {\n          \"current_status\": \"ARCHIVED\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      }\n    },\n    \"indicative_exchange_rate\": \"string\",\n    \"current_day_hours_of_operation\": {\n      \"open_utc\": \"2024-01-15T10:00:00Z\",\n      \"close_utc\": \"2024-01-15T10:00:00Z\"\n    },\n    \"liquidity_provider\": {\n      \"name\": \"ALPHA\",\n      \"trading_pairs\": [\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"payin_currency\": \"USDC\",\n          \"payout_currency\": \"COP\",\n          \"hours_of_operation\": [\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"open_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"close_time_utc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    \"estimated_settlement_time\": \"T+2\",\n    \"created_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e469c02f-1091-48c3-93c4-6ea53f079d5f",
+          "name": "Create Quote",
+          "request": {
+            "name": "Create Quote",
+            "description": {
+              "content": "Creates a quote for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key to prevent duplicate operations",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payin_amount\": \"<decimal>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2148b815-df77-4a0e-a595-125eb5223fbd",
+              "name": "Quote created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key to prevent duplicate operations",
+                    "key": "Idempotency-Key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payin_amount\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n    \"exchange_rate\": \"string\",\n    \"payin\": {\n      \"total\": \"string\",\n      \"fee\": \"string\",\n      \"tax\": \"string\"\n    },\n    \"payout\": {\n      \"total\": \"string\"\n    },\n    \"submission_expires_at\": \"2024-01-15T10:00:00Z\",\n    \"funding_expires_at\": \"2024-01-15T10:00:00Z\",\n    \"created_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21286c86-6da2-4882-95aa-9e326a3b00d9",
+          "name": "Get Quote",
+          "request": {
+            "name": "Get Quote",
+            "description": {
+              "content": "Retrieve details for a specific quote",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "quotes",
+                ":quote_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quote_id",
+                  "description": "(Required) ID of quote"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec9a864c-6e29-4893-b749-73bc51184416",
+              "name": "Quote details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "quotes",
+                    ":quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quote_id",
+                      "description": "(Required) ID of quote"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n    \"exchange_rate\": \"string\",\n    \"payin\": {\n      \"total\": \"string\",\n      \"fee\": \"string\",\n      \"tax\": \"string\"\n    },\n    \"payout\": {\n      \"total\": \"string\"\n    },\n    \"submission_expires_at\": \"2024-01-15T10:00:00Z\",\n    \"funding_expires_at\": \"2024-01-15T10:00:00Z\",\n    \"created_at\": \"2024-01-15T10:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6db3617-1dc1-4250-99f5-d006597dce76",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {
+              "content": "Creates an order for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key to prevent duplicate operations",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da6e2ddf-ec44-4d8c-9054-e7da61486c36",
+              "name": "Order created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key to prevent duplicate operations",
+                    "key": "Idempotency-Key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"quote_id\": \"qt_01k4qpmvgxfsg9db9mjrtq9tk2\",\n    \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n    \"reference_number\": \"SS-ORD-20240115-001\",\n    \"exchange_rate\": \"string\",\n    \"effective_exchange_rate\": \"string\",\n    \"payin\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"COP\",\n        \"method\": \"SOLANA_ADDRESS\",\n        \"status\": {\n          \"current_status\": \"ACTIVE\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      },\n      \"total\": \"string\",\n      \"fee\": \"string\",\n      \"tax\": \"string\"\n    },\n    \"payout\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"USDC\",\n        \"method\": \"SOLANA_ADDRESS\",\n        \"status\": {\n          \"current_status\": \"COMPLIANCE_HOLD\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      },\n      \"total\": \"string\"\n    },\n    \"status\": {\n      \"current_status\": \"STEP_4_COMPLETED\",\n      \"status_history\": [\n        {\n          \"status\": \"STEP_3_SETTLING_PAYOUT\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        },\n        {\n          \"status\": \"STEP_3_SETTLING_PAYOUT\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"funding_instructions\": {\n      \"currency\": \"USDC\",\n      \"method\": \"COP_BANK_ACCOUNT\",\n      \"details\": {\n        \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n      }\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\",\n    \"external_reference_id\": \"ACME-REF-001\",\n    \"retry_order_id\": \"ord_01k4qn4cxdefkargtccm4ycxth\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81e1ab6b-38c6-4274-bf99-5aae0a2e2487",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {
+              "content": "Returns all orders for a customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00e3a0e8-9fe3-46df-8e25-366de722e323",
+              "name": "Orders response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n      \"quote_id\": \"qt_01k4qpmvgxfsg9db9mjrtq9tk2\",\n      \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n      \"reference_number\": \"SS-ORD-20240115-001\",\n      \"exchange_rate\": \"string\",\n      \"effective_exchange_rate\": \"string\",\n      \"payin\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"COP\",\n          \"method\": \"NGN_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"ACTIVE\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"total\": \"string\",\n        \"fee\": \"string\",\n        \"tax\": \"string\"\n      },\n      \"payout\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"NGN\",\n          \"method\": \"NGN_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"ARCHIVED\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"total\": \"string\"\n      },\n      \"status\": {\n        \"current_status\": \"FAILED_DECLINED_BY_LIQ_PROVIDER\",\n        \"status_history\": [\n          {\n            \"status\": \"STEP_1_AWAITING_FUNDING\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          },\n          {\n            \"status\": \"STEP_4_COMPLETED\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"funding_instructions\": {\n        \"currency\": \"USDC\",\n        \"method\": \"SOLANA_ADDRESS\",\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        }\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\",\n      \"external_reference_id\": \"ACME-REF-001\",\n      \"retry_order_id\": \"ord_01k4qn4cxdefkargtccm4ycxth\"\n    },\n    {\n      \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n      \"quote_id\": \"qt_01k4qpmvgxfsg9db9mjrtq9tk2\",\n      \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n      \"reference_number\": \"SS-ORD-20240115-001\",\n      \"exchange_rate\": \"string\",\n      \"effective_exchange_rate\": \"string\",\n      \"payin\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"COP\",\n          \"method\": \"NGN_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"COMPLIANCE_HOLD\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"total\": \"string\",\n        \"fee\": \"string\",\n        \"tax\": \"string\"\n      },\n      \"payout\": {\n        \"external_payment_instrument\": {\n          \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n          \"alias\": \"My Primary Wallet\",\n          \"currency\": \"USDC\",\n          \"method\": \"COP_BANK_ACCOUNT\",\n          \"status\": {\n            \"current_status\": \"COMPLIANCE_HOLD\",\n            \"status_history\": [\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"created_at\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          \"details\": {\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-01-15T10:00:00Z\",\n          \"updated_at\": \"2024-01-15T10:00:00Z\"\n        },\n        \"total\": \"string\"\n      },\n      \"status\": {\n        \"current_status\": \"STEP_2_FILLING_FX\",\n        \"status_history\": [\n          {\n            \"status\": \"STEP_1_AWAITING_FUNDING\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          },\n          {\n            \"status\": \"FAILED_REFUND_PROCESSED\",\n            \"created_at\": \"2024-01-15T10:00:00Z\"\n          }\n        ]\n      },\n      \"funding_instructions\": {\n        \"currency\": \"USDC\",\n        \"method\": \"NGN_BANK_ACCOUNT\",\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        }\n      },\n      \"created_at\": \"2024-01-15T10:00:00Z\",\n      \"updated_at\": \"2024-01-15T10:00:00Z\",\n      \"external_reference_id\": \"ACME-REF-001\",\n      \"retry_order_id\": \"ord_01k4qn4cxdefkargtccm4ycxth\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5f69572-6283-42e5-8626-402f5c1d5565",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieve details for a specific order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) ID of organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) ID of order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1507a16d-56b4-42da-8e3b-bc63b6d8b663",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) ID of organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) ID of order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n    \"quote_id\": \"qt_01k4qpmvgxfsg9db9mjrtq9tk2\",\n    \"offering_id\": \"off_01k4qph5ezfsga7fkvbygsqq93\",\n    \"reference_number\": \"SS-ORD-20240115-001\",\n    \"exchange_rate\": \"string\",\n    \"effective_exchange_rate\": \"string\",\n    \"payin\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"COP\",\n        \"method\": \"SOLANA_ADDRESS\",\n        \"status\": {\n          \"current_status\": \"ACTIVE\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      },\n      \"total\": \"string\",\n      \"fee\": \"string\",\n      \"tax\": \"string\"\n    },\n    \"payout\": {\n      \"external_payment_instrument\": {\n        \"id\": \"mnyacct_01k4r01nm4f41tcsws4sr9k8nn\",\n        \"alias\": \"My Primary Wallet\",\n        \"currency\": \"USDC\",\n        \"method\": \"SOLANA_ADDRESS\",\n        \"status\": {\n          \"current_status\": \"COMPLIANCE_HOLD\",\n          \"status_history\": [\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"details\": {\n          \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n        },\n        \"created_at\": \"2024-01-15T10:00:00Z\",\n        \"updated_at\": \"2024-01-15T10:00:00Z\"\n      },\n      \"total\": \"string\"\n    },\n    \"status\": {\n      \"current_status\": \"STEP_4_COMPLETED\",\n      \"status_history\": [\n        {\n          \"status\": \"STEP_3_SETTLING_PAYOUT\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        },\n        {\n          \"status\": \"STEP_3_SETTLING_PAYOUT\",\n          \"created_at\": \"2024-01-15T10:00:00Z\"\n        }\n      ]\n    },\n    \"funding_instructions\": {\n      \"currency\": \"USDC\",\n      \"method\": \"COP_BANK_ACCOUNT\",\n      \"details\": {\n        \"address\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\"\n      }\n    },\n    \"created_at\": \"2024-01-15T10:00:00Z\",\n    \"updated_at\": \"2024-01-15T10:00:00Z\",\n    \"external_reference_id\": \"ACME-REF-001\",\n    \"retry_order_id\": \"ord_01k4qn4cxdefkargtccm4ycxth\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.stablesea.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cdf5c8e4-5c22-4e18-a62d-4aebf3388a5f",
+    "name": "Stable Sea Terminal Liquidity Providers Organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive API for managing terminal operations, organizations, quotes, and orders in the Stable Sea shipping platform",
+      "type": "text/plain"
+    }
+  }
+}

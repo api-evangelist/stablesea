@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stable Sea Terminal Liquidity Providers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Liquidity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Liquidity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/liquidity-providers"
+          },
+          "docs": "Returns all available liquidity providers with their trading pairs and hours of operation"
+        },
+        {
+          "info": {
+            "name": "Get Exchange Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.stablesea.com/v1/liquidity-providers/:provider_name/exchange-rate",
+            "params": [
+              {
+                "name": "provider_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the liquidity provider"
+              }
+            ]
+          },
+          "docs": "Get current exchange rate for a specific liquidity provider"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
