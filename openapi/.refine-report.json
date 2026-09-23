@@ -1,8 +1,7 @@
 {
   "provider": "stablesea",
   "sources": [
-    "stablesea-liquidity-providers-api-openapi.yml",
-    "stablesea-organizations-api-openapi.yml"
+    "_original/stablesea-openapi.json"
   ],
   "outputs": [
     "stablesea-liquidity-providers-api-openapi.yml",
@@ -11,6 +10,32 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "stablesea-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "stablesea-openapi.json: tagged paths GET /liquidity-providers -> Liquidity Providers",
+    "stablesea-openapi.json: tagged paths GET /liquidity-providers/{provider_name}/exchange-rate -> Liquidity Providers",
+    "stablesea-openapi.json: tagged paths POST /organizations -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id} -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/configured-routes -> Organizations",
+    "stablesea-openapi.json: tagged paths POST /organizations/{organization_id}/external_payment_instruments -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/external_payment_instruments -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/external_payment_instruments/{external_payment_instrument_id} -> Organizations",
+    "stablesea-openapi.json: tagged paths DELETE /organizations/{organization_id}/external_payment_instruments/{external_payment_instrument_id} -> Organizations",
+    "stablesea-openapi.json: tagged paths POST /organizations/{organization_id}/offerings -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/offerings/{offering_id} -> Organizations",
+    "stablesea-openapi.json: tagged paths POST /organizations/{organization_id}/quotes -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/quotes/{quote_id} -> Organizations",
+    "stablesea-openapi.json: tagged paths POST /organizations/{organization_id}/orders -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/orders -> Organizations",
+    "stablesea-openapi.json: tagged paths GET /organizations/{organization_id}/orders/{order_id} -> Organizations",
+    "stablesea-openapi.json: declared missing tag: Liquidity Providers",
+    "stablesea-openapi.json: declared missing tag: Organizations",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "stablesea-liquidity-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "stablesea-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
