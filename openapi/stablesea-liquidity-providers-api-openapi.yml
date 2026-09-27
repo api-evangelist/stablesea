@@ -73,6 +73,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TradingPair'
+    DateTime:
+      type: string
+      format: date-time
+      description: ISO 8601 UTC timestamp (RFC3339)
+      example: '2024-01-15T10:00:00Z'
     TradingPair:
       type: object
       required:
@@ -96,11 +101,23 @@ components:
                 $ref: '#/components/schemas/DateTime'
               close_time_utc:
                 $ref: '#/components/schemas/DateTime'
-    DateTime:
+    PayinCurrency:
       type: string
-      format: date-time
-      description: ISO 8601 UTC timestamp (RFC3339)
-      example: '2024-01-15T10:00:00Z'
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: USDC
+    PayoutCurrency:
+      type: string
+      enum:
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: COP
     ExchangeRate:
       type: object
       required:
@@ -116,23 +133,6 @@ components:
           type: string
           example: '3921.8'
           description: Current exchange rate as a string to preserve precision
-    PayoutCurrency:
-      type: string
-      enum:
-      - COP
-      - MXN
-      - BRL
-      - NGN
-      example: COP
-    PayinCurrency:
-      type: string
-      enum:
-      - USDC
-      - COP
-      - MXN
-      - BRL
-      - NGN
-      example: USDC
   securitySchemes:
     bearerAuth:
       type: http
