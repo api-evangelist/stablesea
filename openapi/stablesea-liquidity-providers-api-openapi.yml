@@ -60,6 +60,48 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PayinCurrency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: USDC
+    ExchangeRate:
+      type: object
+      required:
+      - payin_currency
+      - payout_currency
+      - exchange_rate
+      properties:
+        payin_currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        payout_currency:
+          $ref: '#/components/schemas/PayoutCurrency'
+        exchange_rate:
+          type: string
+          example: '3921.8'
+          description: Current exchange rate as a string to preserve precision
+    LiquidityProvider:
+      type: object
+      required:
+      - name
+      - trading_pairs
+      properties:
+        name:
+          type: string
+          example: ALPHA
+        trading_pairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingPair'
+    DateTime:
+      type: string
+      format: date-time
+      description: ISO 8601 UTC timestamp (RFC3339)
+      example: '2024-01-15T10:00:00Z'
     TradingPair:
       type: object
       required:
@@ -83,24 +125,6 @@ components:
                 $ref: '#/components/schemas/DateTime'
               close_time_utc:
                 $ref: '#/components/schemas/DateTime'
-    LiquidityProvider:
-      type: object
-      required:
-      - name
-      - trading_pairs
-      properties:
-        name:
-          type: string
-          example: ALPHA
-        trading_pairs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TradingPair'
-    DateTime:
-      type: string
-      format: date-time
-      description: ISO 8601 UTC timestamp (RFC3339)
-      example: '2024-01-15T10:00:00Z'
     PayoutCurrency:
       type: string
       enum:
@@ -109,30 +133,6 @@ components:
       - BRL
       - NGN
       example: COP
-    ExchangeRate:
-      type: object
-      required:
-      - payin_currency
-      - payout_currency
-      - exchange_rate
-      properties:
-        payin_currency:
-          $ref: '#/components/schemas/PayinCurrency'
-        payout_currency:
-          $ref: '#/components/schemas/PayoutCurrency'
-        exchange_rate:
-          type: string
-          example: '3921.8'
-          description: Current exchange rate as a string to preserve precision
-    PayinCurrency:
-      type: string
-      enum:
-      - USDC
-      - COP
-      - MXN
-      - BRL
-      - NGN
-      example: USDC
   securitySchemes:
     bearerAuth:
       type: http

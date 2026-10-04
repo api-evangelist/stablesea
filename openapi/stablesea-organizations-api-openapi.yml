@@ -494,13 +494,78 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ConfiguredRoutePayinLimits:
+    PayinCurrency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: USDC
+    PaymentMethod:
+      type: string
+      enum:
+      - SOLANA_ADDRESS
+      - COP_BANK_ACCOUNT
+      - NGN_BANK_ACCOUNT
+    Organization:
       type: object
+      required:
+      - id
+      - name
+      - contact
+      - status
+      - created_at
+      - updated_at
       properties:
-        min:
+        id:
           type: string
-        max:
+          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
+        name:
           type: string
+          example: Acme Corporation
+        contact:
+          $ref: '#/components/schemas/Contact'
+        status:
+          type: object
+          required:
+          - current_status
+          - status_history
+          properties:
+            current_status:
+              $ref: '#/components/schemas/OrganizationStatus'
+            status_history:
+              type: array
+              items:
+                type: object
+                required:
+                - status
+                - created_at
+                properties:
+                  status:
+                    $ref: '#/components/schemas/OrganizationStatus'
+                  created_at:
+                    $ref: '#/components/schemas/DateTime'
+          example:
+            current_status: ACTIVE
+            status_history:
+            - status: ACTIVE
+              created_at: '2024-01-15T10:00:00Z'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+          example: '2024-01-15T10:00:00Z'
+        updated_at:
+          $ref: '#/components/schemas/DateTime'
+          example: '2024-01-15T10:00:00Z'
+    PayoutCurrency:
+      type: string
+      enum:
+      - COP
+      - MXN
+      - BRL
+      - NGN
+      example: COP
     ConfiguredRouteCostTier:
       type: object
       properties:
@@ -511,6 +576,361 @@ components:
         bps:
           type: string
           description: Indicative FX cost in basis points for this tier
+    LiquidityProvider:
+      type: object
+      required:
+      - name
+      - trading_pairs
+      properties:
+        name:
+          type: string
+          example: ALPHA
+        trading_pairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingPair'
+    OrganizationStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - COMPLIANCE_HOLD
+      example: ACTIVE
+    PaymentMethodSolanaAddress:
+      type: object
+      title: SOLANA_ADDRESS
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+    Quote:
+      type: object
+      required:
+      - id
+      - offering_id
+      - exchange_rate
+      - payin
+      - payout
+      - submission_expires_at
+      - funding_expires_at
+      - created_at
+      properties:
+        id:
+          type: string
+          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
+        offering_id:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+        exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        payin:
+          type: object
+          required:
+          - total
+          - fee
+          - tax
+          properties:
+            total:
+              $ref: '#/components/schemas/DecimalString'
+            fee:
+              $ref: '#/components/schemas/DecimalString'
+            tax:
+              $ref: '#/components/schemas/DecimalString'
+        payout:
+          type: object
+          required:
+          - total
+          properties:
+            total:
+              $ref: '#/components/schemas/DecimalString'
+        submission_expires_at:
+          $ref: '#/components/schemas/DateTime'
+        funding_expires_at:
+          $ref: '#/components/schemas/DateTime'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+    ConfiguredRouteTradingHour:
+      type: object
+      properties:
+        day_of_week:
+          type: integer
+          description: Day of week (0=Sunday through 6=Saturday, matching configured offering trading hours storage)
+        start_time:
+          type: string
+        end_time:
+          type: string
+        timezone:
+          type: string
+          example: America/New_York
+    NewExternalPaymentInstrument:
+      type: object
+      required:
+      - alias
+      - currency
+      - method
+      - details
+      properties:
+        alias:
+          type: string
+          example: My Primary Wallet
+        currency:
+          $ref: '#/components/schemas/Currency'
+        method:
+          $ref: '#/components/schemas/PaymentMethod'
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
+          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
+    Offering:
+      type: object
+      required:
+      - id
+      - order_type
+      - payin
+      - payout
+      - indicative_exchange_rate
+      - current_day_hours_of_operation
+      - liquidity_provider
+      - estimated_settlement_time
+      - created_at
+      properties:
+        id:
+          type: string
+          example: off_01k4qph5ezfsga7fkvbygsqq93
+        order_type:
+          type: string
+          enum:
+          - QUOTED
+          - LIMIT
+          - MARKET
+        payin:
+          type: object
+          required:
+          - external_payment_instrument
+          - limits
+          - indicative_cost_tiers
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+            limits:
+              type: object
+              required:
+              - min
+              - max
+              properties:
+                min:
+                  $ref: '#/components/schemas/DecimalString'
+                max:
+                  $ref: '#/components/schemas/DecimalString'
+            indicative_cost_tiers:
+              type: array
+              items:
+                type: object
+                required:
+                - min
+                - max
+                - bps
+                properties:
+                  min:
+                    $ref: '#/components/schemas/DecimalString'
+                  max:
+                    $ref: '#/components/schemas/DecimalString'
+                  bps:
+                    $ref: '#/components/schemas/DecimalString'
+        payout:
+          type: object
+          required:
+          - external_payment_instrument
+          properties:
+            external_payment_instrument:
+              $ref: '#/components/schemas/ExternalPaymentInstrument'
+        indicative_exchange_rate:
+          $ref: '#/components/schemas/DecimalString'
+        current_day_hours_of_operation:
+          type: object
+          required:
+          - open_utc
+          - close_utc
+          properties:
+            open_utc:
+              $ref: '#/components/schemas/DateTime'
+            close_utc:
+              $ref: '#/components/schemas/DateTime'
+        liquidity_provider:
+          $ref: '#/components/schemas/LiquidityProvider'
+        estimated_settlement_time:
+          type: string
+          enum:
+          - T+0
+          - T+1
+          - T+2
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+    ExternalPaymentInstrumentStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - COMPLIANCE_HOLD
+      - ARCHIVED
+    NewOrganization:
+      type: object
+      required:
+      - name
+      - contact
+      properties:
+        name:
+          type: string
+          example: Acme Corporation
+        contact:
+          $ref: '#/components/schemas/Contact'
+    OrderStatus:
+      type: string
+      enum:
+      - STEP_1_AWAITING_FUNDING
+      - STEP_2_FILLING_FX
+      - STEP_3_SETTLING_PAYOUT
+      - STEP_4_COMPLETED
+      - FAILED_FUNDING_EXPIRED
+      - FAILED_DECLINED_BY_LIQ_PROVIDER
+      - FAILED_REFUND_REQUESTED
+      - FAILED_REFUND_PROCESSED
+    ExternalPaymentInstrument:
+      type: object
+      required:
+      - id
+      - alias
+      - currency
+      - method
+      - status
+      - details
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
+        alias:
+          type: string
+          example: My Primary Wallet
+        currency:
+          $ref: '#/components/schemas/Currency'
+        method:
+          $ref: '#/components/schemas/PaymentMethod'
+        status:
+          type: object
+          properties:
+            current_status:
+              $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
+            status_history:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
+                  created_at:
+                    $ref: '#/components/schemas/DateTime'
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
+          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
+        created_at:
+          $ref: '#/components/schemas/DateTime'
+        updated_at:
+          $ref: '#/components/schemas/DateTime'
+    Currency:
+      type: string
+      enum:
+      - USDC
+      - COP
+      - MXN
+      - BRL
+      - NGN
+    NewQuote:
+      type: object
+      required:
+      - offering_id
+      properties:
+        offering_id:
+          type: string
+      oneOf:
+      - required:
+        - payin_amount
+        properties:
+          payin_amount:
+            $ref: '#/components/schemas/DecimalString'
+      - required:
+        - payout_amount
+        properties:
+          payout_amount:
+            $ref: '#/components/schemas/DecimalString'
+    PaymentMethodNgnFundingDetails:
+      type: object
+      title: NGN_BANK_ACCOUNT (payin instrument details)
+      description: 'For NGN orders: echoes the payin external payment instrument. Order funding_instructions.details returns this shape.'
+      required:
+      - bank_name
+      - bank_account_number
+      - doc_id
+      properties:
+        bank_name:
+          type: string
+        bank_account_number:
+          type: string
+        doc_id:
+          type: string
+        account_holder_first_name:
+          type: string
+        account_holder_last_name:
+          type: string
+        account_holder_business_name:
+          type: string
+    DecimalString:
+      type: string
+      format: decimal
+      description: A string representation of a decimal number
+    ConfiguredRoute:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Configured offering / route identifier
+        order_type:
+          type: string
+        payin_currency:
+          type: string
+          description: Pay-in money symbol for the route template
+        payout_currency:
+          type: string
+          description: Pay-out money symbol for the route template
+        liquidity_provider:
+          type: string
+        is_disabled:
+          type: boolean
+        estimated_settlement_time:
+          type: string
+        payin_limits:
+          $ref: '#/components/schemas/ConfiguredRoutePayinLimits'
+        indicative_cost_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredRouteCostTier'
+        trading_hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredRouteTradingHour'
+        has_trading_hours_configured:
+          type: boolean
+          description: False when no trading hour rows exist; in that case is_within_trading_hours is false.
+        is_within_trading_hours:
+          type: boolean
+          description: Whether current time falls in a configured window for today in the route's timezone(s).
+        inclusive_account_types:
+          type: array
+          items:
+            type: string
+          description: When non-empty, only these money-account types may be used for this route (in addition to org-level enabled types). When empty, no extra restriction.
     Order:
       type: object
       required:
@@ -598,328 +1018,6 @@ components:
           $ref: '#/components/schemas/DateTime'
         updated_at:
           $ref: '#/components/schemas/DateTime'
-    NewOrder:
-      type: object
-      required:
-      - quote_id
-      properties:
-        quote_id:
-          type: string
-    Offering:
-      type: object
-      required:
-      - id
-      - order_type
-      - payin
-      - payout
-      - indicative_exchange_rate
-      - current_day_hours_of_operation
-      - liquidity_provider
-      - estimated_settlement_time
-      - created_at
-      properties:
-        id:
-          type: string
-          example: off_01k4qph5ezfsga7fkvbygsqq93
-        order_type:
-          type: string
-          enum:
-          - QUOTED
-          - LIMIT
-          - MARKET
-        payin:
-          type: object
-          required:
-          - external_payment_instrument
-          - limits
-          - indicative_cost_tiers
-          properties:
-            external_payment_instrument:
-              $ref: '#/components/schemas/ExternalPaymentInstrument'
-            limits:
-              type: object
-              required:
-              - min
-              - max
-              properties:
-                min:
-                  $ref: '#/components/schemas/DecimalString'
-                max:
-                  $ref: '#/components/schemas/DecimalString'
-            indicative_cost_tiers:
-              type: array
-              items:
-                type: object
-                required:
-                - min
-                - max
-                - bps
-                properties:
-                  min:
-                    $ref: '#/components/schemas/DecimalString'
-                  max:
-                    $ref: '#/components/schemas/DecimalString'
-                  bps:
-                    $ref: '#/components/schemas/DecimalString'
-        payout:
-          type: object
-          required:
-          - external_payment_instrument
-          properties:
-            external_payment_instrument:
-              $ref: '#/components/schemas/ExternalPaymentInstrument'
-        indicative_exchange_rate:
-          $ref: '#/components/schemas/DecimalString'
-        current_day_hours_of_operation:
-          type: object
-          required:
-          - open_utc
-          - close_utc
-          properties:
-            open_utc:
-              $ref: '#/components/schemas/DateTime'
-            close_utc:
-              $ref: '#/components/schemas/DateTime'
-        liquidity_provider:
-          $ref: '#/components/schemas/LiquidityProvider'
-        estimated_settlement_time:
-          type: string
-          enum:
-          - T+0
-          - T+1
-          - T+2
-        created_at:
-          $ref: '#/components/schemas/DateTime'
-    TradingPair:
-      type: object
-      required:
-      - payin_currency
-      - payout_currency
-      - hours_of_operation
-      properties:
-        payin_currency:
-          $ref: '#/components/schemas/PayinCurrency'
-        payout_currency:
-          $ref: '#/components/schemas/PayoutCurrency'
-        hours_of_operation:
-          type: array
-          items:
-            type: object
-            required:
-            - open_time_utc
-            - close_time_utc
-            properties:
-              open_time_utc:
-                $ref: '#/components/schemas/DateTime'
-              close_time_utc:
-                $ref: '#/components/schemas/DateTime'
-    Quote:
-      type: object
-      required:
-      - id
-      - offering_id
-      - exchange_rate
-      - payin
-      - payout
-      - submission_expires_at
-      - funding_expires_at
-      - created_at
-      properties:
-        id:
-          type: string
-          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
-        offering_id:
-          type: string
-          example: off_01k4qph5ezfsga7fkvbygsqq93
-        exchange_rate:
-          $ref: '#/components/schemas/DecimalString'
-        payin:
-          type: object
-          required:
-          - total
-          - fee
-          - tax
-          properties:
-            total:
-              $ref: '#/components/schemas/DecimalString'
-            fee:
-              $ref: '#/components/schemas/DecimalString'
-            tax:
-              $ref: '#/components/schemas/DecimalString'
-        payout:
-          type: object
-          required:
-          - total
-          properties:
-            total:
-              $ref: '#/components/schemas/DecimalString'
-        submission_expires_at:
-          $ref: '#/components/schemas/DateTime'
-        funding_expires_at:
-          $ref: '#/components/schemas/DateTime'
-        created_at:
-          $ref: '#/components/schemas/DateTime'
-    DateTime:
-      type: string
-      format: date-time
-      description: ISO 8601 UTC timestamp (RFC3339)
-      example: '2024-01-15T10:00:00Z'
-    OrderStatus:
-      type: string
-      enum:
-      - STEP_1_AWAITING_FUNDING
-      - STEP_2_FILLING_FX
-      - STEP_3_SETTLING_PAYOUT
-      - STEP_4_COMPLETED
-      - FAILED_FUNDING_EXPIRED
-      - FAILED_DECLINED_BY_LIQ_PROVIDER
-      - FAILED_REFUND_REQUESTED
-      - FAILED_REFUND_PROCESSED
-    NewExternalPaymentInstrument:
-      type: object
-      required:
-      - alias
-      - currency
-      - method
-      - details
-      properties:
-        alias:
-          type: string
-          example: My Primary Wallet
-        currency:
-          $ref: '#/components/schemas/Currency'
-        method:
-          $ref: '#/components/schemas/PaymentMethod'
-        details:
-          oneOf:
-          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
-          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
-    Organization:
-      type: object
-      required:
-      - id
-      - name
-      - contact
-      - status
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: string
-          example: org_01k2cm4r59e5z8k5ggrbbxjcwy
-        name:
-          type: string
-          example: Acme Corporation
-        contact:
-          $ref: '#/components/schemas/Contact'
-        status:
-          type: object
-          required:
-          - current_status
-          - status_history
-          properties:
-            current_status:
-              $ref: '#/components/schemas/OrganizationStatus'
-            status_history:
-              type: array
-              items:
-                type: object
-                required:
-                - status
-                - created_at
-                properties:
-                  status:
-                    $ref: '#/components/schemas/OrganizationStatus'
-                  created_at:
-                    $ref: '#/components/schemas/DateTime'
-          example:
-            current_status: ACTIVE
-            status_history:
-            - status: ACTIVE
-              created_at: '2024-01-15T10:00:00Z'
-        created_at:
-          $ref: '#/components/schemas/DateTime'
-          example: '2024-01-15T10:00:00Z'
-        updated_at:
-          $ref: '#/components/schemas/DateTime'
-          example: '2024-01-15T10:00:00Z'
-    PaymentMethod:
-      type: string
-      enum:
-      - SOLANA_ADDRESS
-      - COP_BANK_ACCOUNT
-      - NGN_BANK_ACCOUNT
-    Currency:
-      type: string
-      enum:
-      - USDC
-      - COP
-      - MXN
-      - BRL
-      - NGN
-    PayinCurrency:
-      type: string
-      enum:
-      - USDC
-      - COP
-      - MXN
-      - BRL
-      - NGN
-      example: USDC
-    ConfiguredRouteTradingHour:
-      type: object
-      properties:
-        day_of_week:
-          type: integer
-          description: Day of week (0=Sunday through 6=Saturday, matching configured offering trading hours storage)
-        start_time:
-          type: string
-        end_time:
-          type: string
-        timezone:
-          type: string
-          example: America/New_York
-    ExternalPaymentInstrumentStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - COMPLIANCE_HOLD
-      - ARCHIVED
-    DecimalString:
-      type: string
-      format: decimal
-      description: A string representation of a decimal number
-    LiquidityProvider:
-      type: object
-      required:
-      - name
-      - trading_pairs
-      properties:
-        name:
-          type: string
-          example: ALPHA
-        trading_pairs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TradingPair'
-    NewQuote:
-      type: object
-      required:
-      - offering_id
-      properties:
-        offering_id:
-          type: string
-      oneOf:
-      - required:
-        - payin_amount
-        properties:
-          payin_amount:
-            $ref: '#/components/schemas/DecimalString'
-      - required:
-        - payout_amount
-        properties:
-          payout_amount:
-            $ref: '#/components/schemas/DecimalString'
     FundingInstructions:
       type: object
       required:
@@ -936,61 +1034,13 @@ components:
           - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
           - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
           - $ref: '#/components/schemas/PaymentMethodNgnFundingDetails'
-    ConfiguredRoute:
+    ConfiguredRoutePayinLimits:
       type: object
       properties:
-        id:
+        min:
           type: string
-          description: Configured offering / route identifier
-        order_type:
+        max:
           type: string
-        payin_currency:
-          type: string
-          description: Pay-in money symbol for the route template
-        payout_currency:
-          type: string
-          description: Pay-out money symbol for the route template
-        liquidity_provider:
-          type: string
-        is_disabled:
-          type: boolean
-        estimated_settlement_time:
-          type: string
-        payin_limits:
-          $ref: '#/components/schemas/ConfiguredRoutePayinLimits'
-        indicative_cost_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConfiguredRouteCostTier'
-        trading_hours:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConfiguredRouteTradingHour'
-        has_trading_hours_configured:
-          type: boolean
-          description: False when no trading hour rows exist; in that case is_within_trading_hours is false.
-        is_within_trading_hours:
-          type: boolean
-          description: Whether current time falls in a configured window for today in the route's timezone(s).
-        inclusive_account_types:
-          type: array
-          items:
-            type: string
-          description: When non-empty, only these money-account types may be used for this route (in addition to org-level enabled types). When empty, no extra restriction.
-    PayoutCurrency:
-      type: string
-      enum:
-      - COP
-      - MXN
-      - BRL
-      - NGN
-      example: COP
-    OrganizationStatus:
-      type: string
-      enum:
-      - ACTIVE
-      - COMPLIANCE_HOLD
-      example: ACTIVE
     Contact:
       type: object
       required:
@@ -1008,70 +1058,12 @@ components:
         last_name:
           type: string
           example: Doe
-    ExternalPaymentInstrument:
+    NewOrder:
       type: object
       required:
-      - id
-      - alias
-      - currency
-      - method
-      - status
-      - details
-      - created_at
-      - updated_at
+      - quote_id
       properties:
-        id:
-          type: string
-          example: mnyacct_01k4r01nm4f41tcsws4sr9k8nn
-        alias:
-          type: string
-          example: My Primary Wallet
-        currency:
-          $ref: '#/components/schemas/Currency'
-        method:
-          $ref: '#/components/schemas/PaymentMethod'
-        status:
-          type: object
-          properties:
-            current_status:
-              $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
-            status_history:
-              type: array
-              items:
-                type: object
-                properties:
-                  status:
-                    $ref: '#/components/schemas/ExternalPaymentInstrumentStatus'
-                  created_at:
-                    $ref: '#/components/schemas/DateTime'
-        details:
-          oneOf:
-          - $ref: '#/components/schemas/PaymentMethodSolanaAddress'
-          - $ref: '#/components/schemas/PaymentMethodCopBankAccount'
-        created_at:
-          $ref: '#/components/schemas/DateTime'
-        updated_at:
-          $ref: '#/components/schemas/DateTime'
-    PaymentMethodNgnFundingDetails:
-      type: object
-      title: NGN_BANK_ACCOUNT (payin instrument details)
-      description: 'For NGN orders: echoes the payin external payment instrument. Order funding_instructions.details returns this shape.'
-      required:
-      - bank_name
-      - bank_account_number
-      - doc_id
-      properties:
-        bank_name:
-          type: string
-        bank_account_number:
-          type: string
-        doc_id:
-          type: string
-        account_holder_first_name:
-          type: string
-        account_holder_last_name:
-          type: string
-        account_holder_business_name:
+        quote_id:
           type: string
     PaymentMethodCopBankAccount:
       type: object
@@ -1114,26 +1106,34 @@ components:
         account_type:
           type: string
           example: CHECKING
-    NewOrganization:
+    DateTime:
+      type: string
+      format: date-time
+      description: ISO 8601 UTC timestamp (RFC3339)
+      example: '2024-01-15T10:00:00Z'
+    TradingPair:
       type: object
       required:
-      - name
-      - contact
+      - payin_currency
+      - payout_currency
+      - hours_of_operation
       properties:
-        name:
-          type: string
-          example: Acme Corporation
-        contact:
-          $ref: '#/components/schemas/Contact'
-    PaymentMethodSolanaAddress:
-      type: object
-      title: SOLANA_ADDRESS
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+        payin_currency:
+          $ref: '#/components/schemas/PayinCurrency'
+        payout_currency:
+          $ref: '#/components/schemas/PayoutCurrency'
+        hours_of_operation:
+          type: array
+          items:
+            type: object
+            required:
+            - open_time_utc
+            - close_time_utc
+            properties:
+              open_time_utc:
+                $ref: '#/components/schemas/DateTime'
+              close_time_utc:
+                $ref: '#/components/schemas/DateTime'
   securitySchemes:
     bearerAuth:
       type: http
