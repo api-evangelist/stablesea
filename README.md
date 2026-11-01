@@ -64,6 +64,111 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Stablesea is a company surfaced as a portfolio company of kindred-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Stable Sea is a financial technology platform providing global cash management and liquidity for companies building in stablecoins. The Stable Sea Terminal lets businesses consolidate on-chain and off-chain accounts, settle money across 40+ countries, run fiat-to-stablecoin on/off-ramps for transactions up to $50M, earn yield through tokenized money-market funds, and hold Bitcoin in insured custody. The Stable Sea Terminal API is a bearer-authenticated REST API (OpenAPI 3.1) for managing organizations, liquidity providers and exchange rates, external payment instruments, offerings, quotes, and payout orders — with idempotent writes on all create operations. Surfaced as a Kindred Ventures portfolio company and enriched into the API Evangelist network.
 
-Backed by: kindred-ventures — https://stablesea.xyz/
+**Areas:** Company · Stablecoins · Payments · Cash Management · Treasury · Cross-Border Payments · Liquidity · Fintech · On-Off Ramp · Cryptocurrency
+
+## Stablesea on APIs.io
+
+Everything profiled for Stablesea is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/stablesea/](https://apis.io/providers/stablesea/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Stablesea Liquidity Providers API](https://apis.io/apis/stablesea/stablesea-liquidity-providers-api/) — The Liquidity Providers API from Stablesea — 2 operation(s) for liquidity providers.
+- [Stablesea Organizations API](https://apis.io/apis/stablesea/stablesea-organizations-api/) — The Organizations API from Stablesea — 11 operation(s) for organizations.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [stablesea-mcp.yml](https://apis.io/servers/stablesea/stablesea-mcp-yml/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Stable Sea Terminal Liquidity Providers API](https://apis.io/collections/stablesea/open-stablesea-liquidity-providers-api/)
+- [Stable Sea Terminal Liquidity Providers Organizations API](https://apis.io/collections/stablesea/open-stablesea-organizations-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Stablesea Terminal Overlay](https://apis.io/overlays/stablesea/stablesea-terminal-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Stablesea Authentication](https://apis.io/security/stablesea/stablesea-authentication/)
+- [Stablesea Domain Security](https://apis.io/security/stablesea/stablesea-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.stablesea.com/)
+- [Documentation](https://docs.stablesea.com)
+- [API reference](https://docs.stablesea.com/api-reference)
+- [Sign up](https://app.stablesea.com/signup)
+- [Support](https://www.stablesea.com/contact)
+- [Blog](https://www.stablesea.com/blog)
+- [Terms of service](https://www.stablesea.com/terms)
+- [Privacy policy](https://www.stablesea.com/privacy)
+
+## API Evangelist rating
+
+**Kin Score 34.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 48.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 21.1 |
+
+**Agent readiness 26.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.3** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/stablesea/](https://apis.io/providers/stablesea/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Stablesea: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/stablesea/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
